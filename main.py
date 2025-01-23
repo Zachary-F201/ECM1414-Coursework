@@ -11,6 +11,11 @@ def lift_movement(algorithm = "SCAN", current_floor):
     elif algorithm == "Real-Time":
         #... ...
     #Should return a destination
+    for i in range(len(pending_requests)):
+        if pending_requests[i][1] == current_floor:
+            pending_requests.pop(pending_requests[i][1])
+        else:
+            pass
 
 #In general, we will define the direction for up as +1, and down as -1, and for it being stationary as 0 and return these as boolean values
 def direction_of_travel():
