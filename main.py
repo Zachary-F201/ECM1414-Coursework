@@ -3,7 +3,7 @@ pending_requests = []
 def request(floor, destination):
     pending_requests.push([floor,destination])
 
-def lift movement(algorithm = "SCAN", current_floor):
+def lift_movement(algorithm = "SCAN", current_floor):
     if algorithm == "SCAN"
         #Call SCAN algorithm, defined elsewhere
     elif algorithm == "LOOK"
