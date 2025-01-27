@@ -1,24 +1,32 @@
+from random import randint as r
 pending_requests = []
 
-def request(floor, destination):
-    pending_requests.push([floor,destination])
+def request(floor, destination): #The 0 is for time which we can edit
+    pending_requests.append([floor,destination,0])
 
-def lift_movement(algorithm = "SCAN", current_floor):
-    if algorithm == "SCAN"
+def initial_requests(total_floors, num_requests = 10):
+    #Creates an initial list of requests for the lift to use as a base
+    for x in range(num_requests):
+        floor = r(0,total_floors)
+        destination = r(0,total_floors)
+        while destination == floor:
+            destination = r(0,total_floors)
+        request(floor,destination)
+
+def lift_movement(current_floor, algorithm = "SCAN"):
+    if algorithm == "SCAN":
+        print("Scan")
         #Call SCAN algorithm, defined elsewhere
-    elif algorithm == "LOOK"
+    elif algorithm == "LOOK":
+        print("LOOK")
         #Call LOOK algorithm, defined elsewhere
     elif algorithm == "Real-Time":
+        print("More")
         #... ...
     #Should return a destination
-    for i in range(len(pending_requests)):
-        if pending_requests[i][1] == current_floor:
-            pending_requests.pop(pending_requests[i][1])
-        else:
-            pass
 
 #In general, we will define the direction for up as +1, and down as -1, and for it being stationary as 0 and return these as boolean values
-def direction_of_travel():
+def direction_of_travel(current_floor, destination):
     if current_floor < destination:
         direction_of_travel = 1
     elif current_floor > destination:
@@ -26,3 +34,16 @@ def direction_of_travel():
     else:
         direction_of_travel = 0
     return direction_of_travel
+
+def main_process(current_floor = 0):
+    time_taken = []
+    initial_requests(10)
+    while pending_requests != []:
+        current_floor = lift_movement(current_floor)
+        for i in range(len(pending_requests)):
+            pending_requests[i][2] += 1 #Incrementing time
+            if pending_requests[i][1] == current_floor:
+                time_taken.append(pending_requests[i][2])
+                pending_requests.pop(pending_requests[i][1])
+            else:
+                pass
