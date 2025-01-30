@@ -47,3 +47,10 @@ def main_process(current_floor = 0):
                 pending_requests.pop(pending_requests[i][1])
             else:
                 pass
+
+
+#dealing with requests people make on the floors for the elevator
+def processing_requests(floor, direction_of_travel):
+
+#deal with floor requests people make inside the elevator, once they've been picked
+def dropoff_floors(floor, direction_of_travel):
