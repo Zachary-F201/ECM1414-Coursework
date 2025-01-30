@@ -1,4 +1,5 @@
 from random import randint as r
+import simpy
 pending_requests = []
 
 def request(floor, destination): #The 0 is for time which we can edit
