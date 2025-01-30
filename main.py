@@ -7,8 +7,7 @@ def making_floors(floors):
         if x%2 == 0:
             pending_requests.update({str(x)+str(-1):[]})
         else:
-            pending_requests.update({str(x)+str(-1):[]})
-
+            pending_requests.update({str(x)+str(+1):[]})
 
 #example use of the time library to keep track 
 #time.time()
