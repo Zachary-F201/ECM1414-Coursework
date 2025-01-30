@@ -1,6 +1,13 @@
 from random import randint as r
 import time
-pending_requests = []
+pending_requests = {}
+
+def making_floors(floors):
+    for x in range(2*floors):
+        if x%2 == 0:
+            pending_requests.update({str(x)+str(-1):[]})
+        else:
+            pending_requests.update({str(x)+str(-1):[]})
 
 
 #example use of the time library to keep track 
