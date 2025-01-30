@@ -1,6 +1,10 @@
 from random import randint as r
-import simpy
+import time
 pending_requests = []
+
+
+#example use of the time library to keep track 
+#time.time()
 
 def request(floor, destination): #The 0 is for time which we can edit
     pending_requests.append([floor,destination,0])
@@ -55,3 +59,6 @@ def processing_requests(floor, direction_of_travel):
 
 #deal with floor requests people make inside the elevator, once they've been picked
 def dropoff_floors(floor, direction_of_travel):
+
+
+
