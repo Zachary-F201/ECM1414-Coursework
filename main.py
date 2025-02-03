@@ -5,10 +5,10 @@ pending_requests = {}
 def making_floors(floors):
     for x in range(2*floors):
         if x%2 == 0:
-            pending_requests.update({str(x)+str(-1):[]})
+            pending_requests.update({str(x)+str(-1):[0]})
         else:
-            pending_requests.update({str(x)+str(+1):[]})
-
+            pending_requests.update({str(x)+str(+1):[0]})
+    
 #example use of the time library to keep track 
 #time.time()
 
@@ -62,9 +62,21 @@ def main_process(current_floor = 0):
 
 #dealing with requests people make on the floors for the elevator
 def processing_requests(floor, direction_of_travel):
+    if direction_of_travel == 1:
+        direct = "+1"
+    else:
+        direct = "-1"
+    if (pending_requests[str(floor)+str(+1)])[0] == 0:
+        pending_requests.update({str(floor)+direct:[1,time.gettime(),direction_of_travel]})
+    else:
+        request_tot = (pending_requests[str(x)+str(+1)])[0] + 1
+        (pending_requests[str(x)+str(+1)])[0] = [request_tot]
+
+    
 
 #deal with floor requests people make inside the elevator, once they've been picked
-def dropoff_floors(floor, direction_of_travel):
-
+#removed direction of travel as it isn't required as the people in the elevator have already chosen direction
+def dropoff_floors(floor, direction_of_travel,floors):
+    chosen_floor = r(floor+1,floors)
 
 
