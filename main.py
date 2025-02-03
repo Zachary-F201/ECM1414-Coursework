@@ -1,13 +1,13 @@
 from random import randint as r
 import time
-pending_requests = {}
+pending_requests = []
 
 def making_floors(floors):
     for x in range(2*floors):
         if x%2 == 0:
-            pending_requests.update({str(x)+str(-1):[0]})
+            pending_requests.append([0,0,1])
         else:
-            pending_requests.update({str(x)+str(+1):[0]})
+            pending_requests.append([0,0,-1])
     
 #example use of the time library to keep track 
 #time.time()
@@ -61,16 +61,12 @@ def main_process(current_floor = 0):
 
 
 #dealing with requests people make on the floors for the elevator
+# pending requests format [if request made,time,direction]
 def processing_requests(floor, direction_of_travel):
-    if direction_of_travel == 1:
-        direct = "+1"
-    else:
-        direct = "-1"
-    if (pending_requests[str(floor)+str(+1)])[0] == 0:
-        pending_requests.update({str(floor)+direct:[1,time.gettime(),direction_of_travel]})
-    else:
-        request_tot = (pending_requests[str(x)+str(+1)])[0] + 1
-        (pending_requests[str(x)+str(+1)])[0] = [request_tot]
+    if direction_of_travel == 1 and pending_requests[2*floor][0] == 0:
+        pending_requests[2*floor] = [1,time.time(),direction_of_travel]
+    elif direction_of_travel == -1 and pending_requests[2*floor+1][0] == 0:
+        pending_requests[2*floor+1] = [1,time.time(),direction_of_travel]
 
     
 
