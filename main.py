@@ -1,6 +1,17 @@
 from random import randint as r
 import time
 pending_requests = []
+floor_requests = []
+number_of_floors = []
+
+def number_of_floors(n):
+    number of floors = [i for i in range(n)]
+    return number_of_floors
+
+max_floor = number_of_floors[-1]
+
+
+
 
 def making_floors(floors):
     for x in range(2*floors):
@@ -12,8 +23,8 @@ def making_floors(floors):
 #example use of the time library to keep track 
 #time.time()
 
-def request(floor, destination): #The 0 is for time which we can edit
-    pending_requests.append([floor,destination,0])
+def request(floor, destination): 
+    pending_requests.append([floor,destination,time.time()])
 
 def initial_requests(total_floors, num_requests = 10):
     #Creates an initial list of requests for the lift to use as a base
@@ -72,7 +83,19 @@ def processing_requests(floor, direction_of_travel):
 
 #deal with floor requests people make inside the elevator, once they've been picked
 #removed direction of travel as it isn't required as the people in the elevator have already chosen direction
-def dropoff_floors(floor, direction_of_travel,floors):
-    chosen_floor = r(floor+1,floors)
+destination_floor_list = []
+def dropoff_floors():
+    try:
+        floor_requests.append(request())
+        destination_floor = floor_requests[-1][1]
+        if destination_floor not in destination_floor_list:
+            destination_floor_list.append(destination_floor)
+        else:
+            pass
+        return destination_floor_list
+    except ValueError or IndexError:
+        return None
+    
+
 
 
